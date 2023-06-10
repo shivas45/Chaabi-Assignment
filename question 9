@@ -1,0 +1,24 @@
+Q9) Write a func that takes 3 args:
+from_date - string representing a date in the form of 'yy-mm-dd'
+to_date - string representing a date in the form of 'yy-mm-dd'
+difference - int
+Returns True if from_date and to_date are less than difference days away from each other, else
+returns False.
+
+Sol:- 
+from datetime import datetime, timedelta
+
+def compare_dates(from_date, to_date, difference):
+    format = '%y-%m-%d'
+    from_date_obj = datetime.strptime(from_date, format)
+    to_date_obj = datetime.strptime(to_date, format)
+    date_difference = abs((to_date_obj - from_date_obj).days)
+    
+    if date_difference < difference:
+        return True
+    else:
+        return False
+        
+result = compare_dates('21-06-01', '21-06-10', 7)
+print(result)
+        
