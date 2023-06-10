@@ -1,0 +1,121 @@
+Assignment of Chaabi - Backend
+
+Q1) Implement selection sort algorithm in python. The function accepts a
+list in the input and returns a sorted list.
+E.g.
+Input f1([5,416,54,21,6135,15,741]) should
+Return [5, 15, 21, 54, 416, 741, 6135]
+
+sol:-
+def selection_sort(lst):
+    for i in range(len(lst)):
+        min_idx = i
+        for j in range(i+1, len(lst)):
+            if lst[j] < lst[min_idx]:
+                min_idx = j
+        lst[i], lst[min_idx] = lst[min_idx], lst[i]
+    
+    return lst
+    
+    Q2) Write a program that returns the file type from a file name. The type of the file is determined
+        from the extension. Initially, a list of values of the form "extension,type"(e.g. xls,spreadsheet;
+        png,image) will be input.
+        The program takes input in the following form:
+        1. Input extension and type values in the form of a string having the following format:
+        a. "extension1,type1;extension2,type2;extension3,type3"
+        b. E.g. If we needed to input xls → spreadsheet, xlsx → spreadsheet, jpg → image
+        our string would be something like: "xls,spreadsheet;xlsx,spreadsheet;jpg,image"
+        2. Input a list of filename.extension. E.g. an input list could be something like ["abc.html",
+        "xyz.xls", "text.csv", "123"]
+        The program should return a dict of filename: type pairs
+        E.g.
+        f("xls,spreadsheet;xlsx,spreadsheet;jpg,image", ["abc.jpg",
+        "xyz.xls", "text.csv", "123"]) should return
+        {
+       "abc.jpg": "image",
+       "xyz.xls": "spreadsheet",
+       "Text.csv": "unknown",
+        "123": "unknown"
+       }
+       
+       SOLUTION :-
+    def get_file_types(extension_list, filenames):
+    file_types = {}
+    extension_mapping = {}
+    
+    
+    for mapping in extension_list.split(";"):
+        extension, file_type = mapping.split(",")
+        extension_mapping[extension] = file_type
+    
+    
+    for filename in filenames:
+        file_extension = filename.split(".")[-1]
+        file_types[filename] = extension_mapping.get(file_extension, "unknown")
+    
+    return file_types
+    
+    
+    Q3). Column Sorting, yay!
+
+Given a list of dicts, write a program to sort the list according to a key given in input.
+E.g.
+Input f([
+{"fruit": "orange", "color": "orange"},
+{"fruit": "apple", "color": "red"},
+{"fruit": "banana", "color": "yellow"},
+{"fruit": "blueberry", "color": "blue"}
+], "fruit")
+Should Output
+[
+{"fruit": "apple", "color": "red"},
+{"fruit": "banana", "color": "yellow"},
+{"fruit": "blueberry", "color": "blue"},
+{"fruit": "orange", "color": "orange"}
+]
+AND
+Input f([
+{"fruit": "orange", "color": "orange"},
+{"fruit": "apple", "color": "red"},
+{"fruit": "banana", "color": "yellow"},
+{"fruit": "blueberry", "color": "blue"}
+], "color")
+Should Output
+[
+{"fruit": "blueberry", "color": "blue"},
+{"fruit": "orange", "color": "orange"},
+{"fruit": "apple", "color": "red"},
+{"fruit": "banana", "color": "yellow"}
+]
+
+Solution:-
+
+fruits = [
+    {"fruit": "orange", "color": "orange"},
+    {"fruit": "apple", "color": "red"},
+    {"fruit": "banana", "color": "yellow"},
+    {"fruit": "blueberry", "color": "blue"}
+]
+sorted_by_fruit = sort_list_of_dicts(fruits, "fruit")
+print(sorted_by_fruit)
+
+
+colors = [
+    {"fruit": "orange", "color": "orange"},
+    {"fruit": "apple", "color": "red"},
+    {"fruit": "banana", "color": "yellow"},
+    {"fruit": "blueberry", "color": "blue"}
+]
+sorted_by_color = sort_list_of_dicts(colors, "color")
+print(sorted_by_color)
+
+
+
+
+
+
+    
+    
+    
+
+
